@@ -10,6 +10,13 @@ def cc_info_required?
   @hotel_rooms.any? || @cars.any? { |car| car.is_guarantee_required.to_b }
 end
 
+# maybe related: if this is true, it's true?
+def to_b
+  ['1', 'TRUE', 'Y', 'YES'].include?(self.upcase) ? true : false
+end
+
+
+
 
 def best_guess_location_name
   if self.location && self.location.name
@@ -35,6 +42,9 @@ def best_guess_location_name
   end
 end
 
+
+
+
 def has_parking?
   self.activities.each do |activity|
     return true if activity.parent_category_code == InPathConstants::ACTIVITY_CATEGORY_CODE__PARKING
@@ -45,11 +55,4 @@ end
 def has_parking?
   self.activities.any? { |a| a.parent_category_code == InPathConstants::ACTIVITY_CATEGORY_CODE__PARKING }
 end
-
-# if this is true, it's true?
-def to_b
-  ['1', 'TRUE', 'Y', 'YES'].include?(self.upcase) ? true : false
-end
   
-
-

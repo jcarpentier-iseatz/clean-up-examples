@@ -1,3 +1,5 @@
+# http://tomafro.net/2009/08/the-cost-of-explicit-returns-in-ruby
+
 def is_cc_info_required
   return true if @hotel_rooms.size > 0
   @cars.each do |car|

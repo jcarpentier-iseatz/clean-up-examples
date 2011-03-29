@@ -1,0 +1,19 @@
+<%-
+all_errors = []
+(errors || []).each do |error|
+  all_errors << error
+end
+all_errors << flash[:error] if flash[:error]
+all_errors << flash.now[:error] if flash.now[:error]
+all_errors.uniq!
+-%>
+
+
+<% 
+=begin  
+  errors variable above will always be empty array.
+  technically, if we redirected on error, rendered on success, we should only have to check flash[:error]
+=end
+%>
+
+<% errors = flash[:error] || flash.now[:error] %>

@@ -1,0 +1,18 @@
+<%# some_template_that_passes_hotels.html.erb %>
+<% render :partial => partner_template(:availability), :locals => { :hotels => @hotel_availability.hotels } %>
+
+<%# some_other_template_that_doesnt_pass_hotels.html.erb %>
+<% render :partial => partner_template(:availability) %>
+
+<%# _availability.html.erb %>
+<%
+=begin
+
+  we will get an undefined local variable or method 'hotels' if we try to access hotels from the second template
+  
+  best practice to default hotels variable to empty array:
+
+=end
+%>
+
+<% hotels ||= [] %>

@@ -1,0 +1,17 @@
+<select id="sub_category" name="CategoryFilter" class="selectList2"> 
+  <option value="<%= @activity_availability.category_code %>"><%=t(:activity_category_all_ip)%></option>
+  <%- # These were the subcategories for KLM as of 2010-01-06 -%>
+  <%- ["1002", "1006", "1010", "1014", "1021", "1022", "1030", "1032", "1034"].each do |code| -%>
+  <option value="<%= "#{@activity_availability.category_code},#{code}" %>"><%= t("activity_category_#{code}#{"_ip" if code != "1010" && code != "1034"}") %></option>
+  <%- end -%>
+</select>
+
+<%
+=begin
+  in controller somewhere
+  @activity_category_codes = ["1002", "1006", "1010", "1014", "1021", "1022", "1030", "1032", "1034"]
+=end
+%>
+
+<%= select_tag :category_filter, @activity_category_codes.map { |c| [c, t("activity_category_#{c}")] %>
+
